@@ -1,0 +1,23 @@
+{
+  "name": "11-note-taker",
+  "version": "1.0.0",
+  "description": "This program will give a business the ability to read and save notes.\r   ## Table of Contents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karijayyy/11-note-taker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karijayyy/11-note-taker/issues"
+  },
+  "homepage": "https://github.com/Karijayyy/11-note-taker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
