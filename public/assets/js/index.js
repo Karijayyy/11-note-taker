@@ -33,8 +33,7 @@ const getNotes = () =>
     },
   });
 
-const saveNote = (note) =>
-  fetch('/api/notes', {
+const saveNote = (note) =>fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -70,8 +69,11 @@ const handleNoteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
+    console.log ("is it working?")
     getAndRenderNotes();
+    console.log ("hello")
     renderActiveNote();
+    console.log ("hello again")
   });
 };
 
@@ -81,15 +83,19 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-
+  // const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+const noteId = note.getAttribute("index");
+console.log ("hello")
   if (activeNote.id === noteId) {
     activeNote = {};
   }
 
   deleteNote(noteId).then(() => {
+    console.log("hey again")
     getAndRenderNotes();
+    console.log("new log")
     renderActiveNote();
+    console.log("another new note")
   });
 };
 
@@ -124,7 +130,7 @@ const renderNoteList = async (notes) => {
   let noteListItems = [];
 
   // Returns HTML element with or without a delete button
-  const createLi = (text, delBtn = true) => {
+  const createLi = (text, delBtn = true, index) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
 
@@ -136,6 +142,7 @@ const renderNoteList = async (notes) => {
 
     if (delBtn) {
       const delBtnEl = document.createElement('i');
+      delBtnEl.setAttribute("index", index)
       delBtnEl.classList.add(
         'fas',
         'fa-trash-alt',
@@ -155,8 +162,8 @@ const renderNoteList = async (notes) => {
     noteListItems.push(createLi('No saved Notes', false));
   }
 
-  jsonNotes.forEach((note) => {
-    const li = createLi(note.title);
+  jsonNotes.forEach((note, index) => {
+    const li = createLi(note.title, true, index);
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
